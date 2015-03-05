@@ -1,7 +1,6 @@
 package com.redfin.sitemapgenerator;
 
 import java.io.File;
-import java.util.Date;
 import java.util.List;
 
 import junit.framework.TestCase;
@@ -39,7 +38,7 @@ public class GoogleNewsSitemapUrlTest extends TestCase {
         dateFormat.setTimeZone(W3CDateFormat.ZULU);
         wsg = GoogleNewsSitemapGenerator.builder("http://www.example.com", dir).dateFormat(dateFormat).build();
         GoogleNewsSitemapUrl url = new GoogleNewsSitemapUrl("http://www.example.com/index.html", "Beispieltitel",
-                new Date(0), "Beispiel", "de");
+                "1970-01-01", "Beispiel", "de");
         wsg.addUrl(url);
         // @formatter:off
         String expected =
@@ -52,7 +51,7 @@ public class GoogleNewsSitemapUrlTest extends TestCase {
                 + BASE+BASE+BASE+BASE+"<news:name>Beispiel</news:name>\n"
                 + BASE+BASE+BASE+BASE+"<news:language>de</news:language>\n"
                 + BASE+BASE+BASE+"</news:publication>\n"
-                + BASE+BASE+BASE+"<news:publication_date>1970-01-01T00:00:00Z</news:publication_date>\n"
+                + BASE+BASE+BASE+"<news:publication_date>1970-01-01</news:publication_date>\n"
                 + BASE+BASE+BASE+"<news:title>Beispieltitel</news:title>\n"
                 + BASE+BASE+"</news:news>\n"
                 + BASE+"</url>\n"
@@ -67,7 +66,7 @@ public class GoogleNewsSitemapUrlTest extends TestCase {
         dateFormat.setTimeZone(W3CDateFormat.ZULU);
         wsg = GoogleNewsSitemapGenerator.builder("http://www.example.com", dir).dateFormat(dateFormat).build();
         GoogleNewsSitemapUrl url = new GoogleNewsSitemapUrl.Options("http://www.example.com/index.html",
-                "Beispieltitel", new Date(0), "Beispiel", "de").keywords("Klaatu", "Barrata", "Nicto").build();
+                "Beispieltitel", "1970-01-01", "Beispiel", "de").keywords("Klaatu", "Barrata", "Nicto").build();
         wsg.addUrl(url);
         // @formatter:off
         String expected =
@@ -80,7 +79,7 @@ public class GoogleNewsSitemapUrlTest extends TestCase {
               + BASE+BASE+BASE+BASE+"<news:name>Beispiel</news:name>\n"
               + BASE+BASE+BASE+BASE+"<news:language>de</news:language>\n"
               + BASE+BASE+BASE+"</news:publication>\n"
-              + BASE+BASE+BASE+"<news:publication_date>1970-01-01T00:00:00Z</news:publication_date>\n"
+              + BASE+BASE+BASE+"<news:publication_date>1970-01-01</news:publication_date>\n"
               + BASE+BASE+BASE+"<news:title>Beispieltitel</news:title>\n"
               + BASE+BASE+BASE+"<news:keywords>Klaatu, Barrata, Nicto</news:keywords>\n"
               + BASE+BASE+"</news:news>\n"

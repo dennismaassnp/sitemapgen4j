@@ -92,10 +92,12 @@ public class GoogleNewsSitemapGenerator extends SitemapGenerator<GoogleNewsSitem
 
         private static final String SEPARATOR = ",";
 
+        @Override
         public Class<GoogleNewsSitemapUrl> getUrlClass() {
             return GoogleNewsSitemapUrl.class;
         }
 
+        @Override
         public void render(GoogleNewsSitemapUrl url, OutputStreamWriter out, W3CDateFormat dateFormat)
                 throws IOException {
             StringBuilder sb = new StringBuilder();
@@ -112,7 +114,7 @@ public class GoogleNewsSitemapGenerator extends SitemapGenerator<GoogleNewsSitem
             if (url.getGenres().size() > 0) {
             sb.append(base+base+base+"<news:genres>"+join(url.getGenres(), SEPARATOR)+"</news:genres>\n");
             }
-            sb.append(base+base+base+"<news:publication_date>"+dateFormat.format(url.getPublicationDate())+"</news:publication_date>\n");
+            sb.append(base+base+base+"<news:publication_date>"+url.getPublicationDate()+"</news:publication_date>\n");
             sb.append(base+base+base+"<news:title>"+url.getTitle()+"</news:title>\n");
             if (notEmpty(url.getKeywords())) {
             sb.append(base+base+base+"<news:keywords>"+url.getKeywords()+"</news:keywords>\n");
@@ -130,6 +132,7 @@ public class GoogleNewsSitemapGenerator extends SitemapGenerator<GoogleNewsSitem
             return (url != null) && !url.isEmpty();
         }
 
+        @Override
         public String getXmlNamespaces() {
             return "xmlns:news=\"http://www.google.com/schemas/sitemap-news/0.9\"";
         }

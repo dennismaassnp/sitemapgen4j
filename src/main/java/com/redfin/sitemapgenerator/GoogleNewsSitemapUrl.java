@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,7 +15,7 @@ import java.util.List;
  */
 public class GoogleNewsSitemapUrl extends WebSitemapUrl {
 
-    private final Date publicationDate;
+    private final String publicationDate;
     private final String keywords;
     private final String title;
     private final String publicationName;
@@ -27,7 +26,7 @@ public class GoogleNewsSitemapUrl extends WebSitemapUrl {
 
     /** Options to configure Google News URLs */
     public static class Options extends AbstractSitemapUrlOptions<GoogleNewsSitemapUrl, Options> {
-        private Date publicationDate;
+        private String publicationDate;
         private String keywords;
         private String title;
         private String publicationName;
@@ -37,13 +36,13 @@ public class GoogleNewsSitemapUrl extends WebSitemapUrl {
         private Access access;
 
         /** Specifies an URL and publication date (which is mandatory for Google News) */
-        public Options(String url, String title, Date publicationDate, String publicationName,
+        public Options(String url, String title, String publicationDate, String publicationName,
                 String publicationLanguage) throws MalformedURLException {
             this(new URL(url), title, publicationDate, publicationName, publicationLanguage);
         }
 
         /** Specifies an URL and publication date (which is mandatory for Google News) */
-        public Options(URL url, String title, Date publicationDate, String publicationName, String publicationLanguage) {
+        public Options(URL url, String title, String publicationDate, String publicationName, String publicationLanguage) {
             super(url, GoogleNewsSitemapUrl.class);
             this.title = title;
             this.publicationName = publicationName;
@@ -115,13 +114,13 @@ public class GoogleNewsSitemapUrl extends WebSitemapUrl {
     }
 
     /** Specifies an URL and publication date (which is mandatory for Google News) */
-    public GoogleNewsSitemapUrl(URL url, String title, Date publicationDate, String publicationName,
+    public GoogleNewsSitemapUrl(URL url, String title, String publicationDate, String publicationName,
             String publicationLanguage) {
         this(new Options(url, title, publicationDate, publicationName, publicationLanguage));
     }
 
     /** Specifies an URL and publication date (which is mandatory for Google News) */
-    public GoogleNewsSitemapUrl(String url, String title, Date publicationDate, String publicationName,
+    public GoogleNewsSitemapUrl(String url, String title, String publicationDate, String publicationName,
             String publicationLanguage) throws MalformedURLException {
         this(new Options(url, title, publicationDate, publicationName, publicationLanguage));
     }
@@ -140,7 +139,7 @@ public class GoogleNewsSitemapUrl extends WebSitemapUrl {
     }
 
     /** Retrieves the publication date */
-    public Date getPublicationDate() {
+    public String getPublicationDate() {
         return publicationDate;
     }
 
